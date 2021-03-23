@@ -1,0 +1,3 @@
+include ':adapter-kit'
+include ':app'
+rootProject.name = "AdapterKit"
