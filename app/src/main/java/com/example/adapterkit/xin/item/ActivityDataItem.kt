@@ -3,7 +3,7 @@ package com.example.adapterkit.xin.item
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.adapter.kit.IDataItem
+import com.adapter.kit.DataItem
 import com.example.adapterkit.R
 import com.example.adapterkit.xin.model.NewModel
 
@@ -14,7 +14,7 @@ import com.example.adapterkit.xin.model.NewModel
  * Email: hydznsqk@163.com
  * Des:
  */
-class ActivityDataItem(data: NewModel): IDataItem<NewModel, ActivityDataItem.ActivityHolder>(data) {
+class ActivityDataItem(data: NewModel): DataItem<NewModel, ActivityDataItem.ActivityHolder>(data) {
 
 
     override fun getItemLayoutRes(): Int {

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.adapter.kit.IDataItem;
+import com.adapter.kit.DataItem;
 import com.example.adapterkit.R;
 import com.example.adapterkit.xin.model.NewModel;
 
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * Email: hydznsqk@163.com
  * Des:
  */
-public class TopTabDataItem extends IDataItem<NewModel, RecyclerView.ViewHolder> {
+public class TopTabDataItem extends DataItem<NewModel, RecyclerView.ViewHolder> {
 
     public TopTabDataItem(@Nullable NewModel model) {
         super(model);

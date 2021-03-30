@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
  * Email: hydznsqk@163.com
  * Des:数据条目的包装类,持有数据和viewHolder
  * 1.泛型参数实例化对象
- * 2.itemViewType和IDataItem实例一一对应
+ * 2.itemViewType和DataItem实例一一对应
  */
-abstract class IDataItem<DATA, VH : RecyclerView.ViewHolder> {
+abstract class DataItem<DATA, VH : RecyclerView.ViewHolder> {
 
-    protected var mAdapter: IAdapter? = null
+    protected var mAdapter: AdapterKit? = null
     var mData: DATA? = null
 
     constructor(data: DATA? = null) {
@@ -61,7 +61,7 @@ abstract class IDataItem<DATA, VH : RecyclerView.ViewHolder> {
         return 0
     }
 
-    fun setAdapter(adapter: IAdapter) {
+    fun setAdapter(adapter: AdapterKit) {
         this.mAdapter = adapter
     }
 

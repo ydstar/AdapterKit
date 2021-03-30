@@ -2,7 +2,7 @@ package com.example.adapterkit.xin.item
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.adapter.kit.IDataItem
+import com.adapter.kit.DataItem
 import com.example.adapterkit.R
 import com.example.adapterkit.xin.model.NewModel
 
@@ -14,7 +14,7 @@ import com.example.adapterkit.xin.model.NewModel
  * Des:
  */
 class ImageDataItem(spanCount: Int, data: NewModel) :
-    IDataItem<NewModel, RecyclerView.ViewHolder>(data) {
+    DataItem<NewModel, RecyclerView.ViewHolder>(data) {
 
     var mSpancount: Int
 

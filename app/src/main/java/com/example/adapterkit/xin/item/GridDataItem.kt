@@ -3,7 +3,8 @@ package com.example.adapterkit.xin.item
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.adapter.kit.IDataItem
+import com.adapter.kit.DataItem
+
 import com.example.adapterkit.R
 import com.example.adapterkit.xin.model.NewModel
 
@@ -14,7 +15,7 @@ import com.example.adapterkit.xin.model.NewModel
  * Email: hydznsqk@163.com
  * Des:
  */
-class GridDataItem(data: NewModel): IDataItem<NewModel, GridDataItem.MyHolder>(data) {
+class GridDataItem(data: NewModel): DataItem<NewModel, GridDataItem.MyHolder>(data) {
 
     override fun getItemLayoutRes(): Int {
         return R.layout.layout_list_item_grid;

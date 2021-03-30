@@ -2,7 +2,8 @@ package com.example.adapterkit.xin.item
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.adapter.kit.IDataItem
+import com.adapter.kit.DataItem
+
 import com.example.adapterkit.R
 import com.example.adapterkit.xin.model.NewModel
 
@@ -13,7 +14,7 @@ import com.example.adapterkit.xin.model.NewModel
  * Email: hydznsqk@163.com
  * Des:
  */
-class TopBanner(data: NewModel) : IDataItem<NewModel, RecyclerView.ViewHolder>(data) {
+class TopBanner(data: NewModel) : DataItem<NewModel, RecyclerView.ViewHolder>(data) {
     override fun getItemLayoutRes(): Int {
         return R.layout.layout_list_item_banner
     }

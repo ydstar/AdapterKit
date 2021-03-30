@@ -20,7 +20,7 @@ import java.lang.reflect.ParameterizedType
  * Email: hydznsqk@163.com
  * Des:通用数据适配器
  */
-class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private var BASE_ITEM_TYPE_HEADER = 1000000
@@ -30,7 +30,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     private var mContext: Context
     private var mInflater: LayoutInflater? = null
 
-    private var mDataSets = ArrayList<IDataItem<*, out RecyclerView.ViewHolder>>()
+    private var mDataSets = ArrayList<DataItem<*, out RecyclerView.ViewHolder>>()
     //装载不同视图itemType的集合
     private val mTypePositions = SparseIntArray();
 
@@ -108,7 +108,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private fun createViewHolderInternal(
-        javaClass: Class<IDataItem<*, out RecyclerView.ViewHolder>>,
+        javaClass: Class<DataItem<*, out RecyclerView.ViewHolder>>,
         itemView: View
     ): RecyclerView.ViewHolder {
 
@@ -132,7 +132,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
             }
         }
-        return object : IViewHolder(itemView) {}
+        return object : CacheViewHolder(itemView) {}
     }
 
     /**
@@ -146,11 +146,11 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
         getItem(itemPosition)?.onBindData(holder, itemPosition)
     }
 
-    private fun getItem(position: Int): IDataItem<*, RecyclerView.ViewHolder>? {
+    private fun getItem(position: Int): DataItem<*, RecyclerView.ViewHolder>? {
         if (position < 0 || position >= mDataSets.size) {
             return null
         }
-        return mDataSets[position] as IDataItem<*, RecyclerView.ViewHolder>
+        return mDataSets[position] as DataItem<*, RecyclerView.ViewHolder>
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,7 +314,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     /**
      * 在指定位置添加数据
      */
-    fun addItem(index: Int, item: IDataItem<*, out RecyclerView.ViewHolder>, notify: Boolean) {
+    fun addItem(index: Int, item: DataItem<*, out RecyclerView.ViewHolder>, notify: Boolean) {
         if (index > 0) {
             mDataSets.add(index, item)
         } else {
@@ -330,7 +330,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     /**
      * 往现有集合的尾部添加items集合
      */
-    fun addItems(items: List<IDataItem<*, out RecyclerView.ViewHolder>>, notify: Boolean) {
+    fun addItems(items: List<DataItem<*, out RecyclerView.ViewHolder>>, notify: Boolean) {
         val start = mDataSets.size
         for (item in items) {
             mDataSets.add(item)
@@ -343,7 +343,7 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     /**
      * 从指定位置上移除item
      */
-    fun removeItem(index: Int): IDataItem<*, out RecyclerView.ViewHolder>? {
+    fun removeItem(index: Int): DataItem<*, out RecyclerView.ViewHolder>? {
         if (index > 0 && index < mDataSets.size) {
             val item = mDataSets.get(index)
             notifyItemRemoved(index)
@@ -356,12 +356,12 @@ class IAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>
     /**
      * 移除指定item
      */
-    fun removeItem(item: IDataItem<*, out RecyclerView.ViewHolder>) {
+    fun removeItem(item: DataItem<*, out RecyclerView.ViewHolder>) {
         val index = mDataSets.indexOf(item)
         removeItem(index)
     }
 
-    fun refreshItem(iDataItem: IDataItem<*, out RecyclerView.ViewHolder>) {
+    fun refreshItem(iDataItem: DataItem<*, out RecyclerView.ViewHolder>) {
         val indexOf = mDataSets.indexOf(iDataItem)
         notifyItemChanged(indexOf)
     }

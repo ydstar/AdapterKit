@@ -2,7 +2,7 @@ package com.example.adapterkit.xin.item
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.adapter.kit.IDataItem
+import com.adapter.kit.DataItem
 import com.example.adapterkit.R
 import com.example.adapterkit.xin.model.NewModel
 
@@ -13,7 +13,7 @@ import com.example.adapterkit.xin.model.NewModel
  * Email: hydznsqk@163.com
  * Des:
  */
-class VideoDataItem(spanCount:Int,data: NewModel): IDataItem<NewModel, RecyclerView.ViewHolder>(data) {
+class VideoDataItem(spanCount:Int,data: NewModel): DataItem<NewModel, RecyclerView.ViewHolder>(data) {
 
     var mSpancount:Int
     init {
