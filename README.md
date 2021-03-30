@@ -23,20 +23,20 @@ YdKit 是一组功能丰富的 Android 通用组件。
 仅支持`AndroidX`
 ```
 dependencies {
-     implementation 'com.android.ydkit:adapter-kit:1.0.0'
+     implementation 'com.android.ydkit:adapter-kit:1.0.1'
 }
 ```
 
 ## 使用方法
 
 ```java
-val adapter = IAdapter(this)
+val adapter = AdapterKit(this)
 
 recycler_view.layoutManager = GridLayoutManager(this,2)
 recycler_view.adapter=adapter
 
 //数据
-val list:ArrayList<IDataItem<*, out RecyclerView.ViewHolder>> = ArrayList()
+val list:ArrayList<DataItem<*, out RecyclerView.ViewHolder>> = ArrayList()
 list.add(TopTabDataItem(NewModel()))//顶部导航
 list.add(TopBanner(NewModel()))//顶部轮播图
 list.add(GridDataItem(NewModel()))//金刚区
