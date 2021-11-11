@@ -7,4 +7,5 @@ package com.example.adapterkit.xin.model;
  * Des:
  */
 public class NewModel {
+    public String name;
 }

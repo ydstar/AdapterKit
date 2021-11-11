@@ -15,10 +15,10 @@ import java.lang.ref.WeakReference
 import java.lang.reflect.ParameterizedType
 
 /**
- * Author: 信仰年轻
+ * Author: 侯亚东
  * Date: 2021-01-04 11:38
- * Email: hydznsqk@163.com
- * Des:通用数据适配器
+ * Email: houyadong1@gome.com.cn
+ * Des: recyclerView通用数据适配器-具体使用请参考https://github.com/ydstar/AdapterKit
  */
 class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -31,6 +31,7 @@ class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolde
     private var mInflater: LayoutInflater? = null
 
     private var mDataSets = ArrayList<DataItem<*, out RecyclerView.ViewHolder>>()
+
     //装载不同视图itemType的集合
     private val mTypePositions = SparseIntArray();
 
@@ -89,10 +90,6 @@ class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolde
         //根据类型取出dataItem
         val position = mTypePositions.get(viewType)
         val dataItem = mDataSets[position]
-        val vh = dataItem.onCreateViewHolder(parent)
-        if (vh != null) {
-            return vh
-        }
 
         //拿到itemView
         var itemView = dataItem.getItemView(parent)
@@ -104,26 +101,27 @@ class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             itemView = mInflater!!.inflate(itemLayoutRes, parent, false)
         }
-        return createViewHolderInternal(dataItem.javaClass, itemView!!)
+
+        val vh = dataItem.onCreateViewHolder(itemView!!)
+        if (vh != null) {
+            return vh
+        }
+        return createViewHolderInternal(dataItem.javaClass, itemView)
     }
 
     private fun createViewHolderInternal(
         javaClass: Class<DataItem<*, out RecyclerView.ViewHolder>>,
-        itemView: View
-    ): RecyclerView.ViewHolder {
+        itemView: View): RecyclerView.ViewHolder {
 
         val superclass = javaClass.genericSuperclass
         if (superclass is ParameterizedType) {
             //得到它携带的泛型参数的数组
             val arguments = superclass.actualTypeArguments
             for (argument in arguments) {
-                if (argument is Class<*> && RecyclerView.ViewHolder::class.java.isAssignableFrom(
-                        argument
-                    )
-                ) {
+                if (argument is Class<*> && RecyclerView.ViewHolder::class.java.isAssignableFrom(argument)) {
                     try {
                         //如果是则使用反射 实例化类上标记的实际的泛型对象
-                        //这里需要  try-catch 一把，如果咱们直接在iDataItem子类上标记 RecyclerView.ViewHolder，抽象类是不允许反射的
+                        //这里需要  try-catch 一把，如果咱们直接在DataItem子类上标记 RecyclerView.ViewHolder，抽象类是不允许反射的
                         return argument.getConstructor(View::class.java)
                             .newInstance(itemView) as RecyclerView.ViewHolder
                     } catch (e: Throwable) {
@@ -223,7 +221,6 @@ class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolde
                     lp.isFullSpan = true
                 }
             }
-
             dataItem.onViewAttachedToWindow(holder)
         }
     }
@@ -369,7 +366,6 @@ class AdapterKit(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolde
     fun clearItems() {
         mDataSets.clear()
         notifyDataSetChanged()
-
     }
 
 

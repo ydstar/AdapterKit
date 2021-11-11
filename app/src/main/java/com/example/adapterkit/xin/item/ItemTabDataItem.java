@@ -1,10 +1,13 @@
 package com.example.adapterkit.xin.item;
 
 
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.adapter.kit.CacheViewHolder;
 import com.adapter.kit.DataItem;
 import com.example.adapterkit.R;
 import com.example.adapterkit.xin.model.NewModel;
@@ -18,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
  * Email: hydznsqk@163.com
  * Des:
  */
-public class ItemTabDataItem extends DataItem<NewModel, RecyclerView.ViewHolder> {
+public class ItemTabDataItem extends DataItem<NewModel, CacheViewHolder> {
 
     public ItemTabDataItem(@Nullable NewModel newModel) {
         super(newModel);
@@ -29,10 +32,18 @@ public class ItemTabDataItem extends DataItem<NewModel, RecyclerView.ViewHolder>
         return R.layout.layout_list_item_tab;
     }
 
+
     @Override
-    public void onBindData(@NotNull RecyclerView.ViewHolder holder, int position) {
-        AppCompatImageView imageView = holder.itemView.findViewById(R.id.item_image);
-        imageView.setImageResource(R.drawable.item_tab);
+    public CacheViewHolder onCreateViewHolder(@NonNull View itemView) {
+        return new CacheViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindData(@NotNull CacheViewHolder holder, int position) {
+//        AppCompatImageView imageView = holder.itemView.findViewById(R.id.item_image);
+//        imageView.setImageResource(R.drawable.item_tab);
+        AppCompatImageView viewById = holder.findViewById(R.id.item_image);
+        viewById.setImageResource(R.drawable.item_tab);
     }
 
 }

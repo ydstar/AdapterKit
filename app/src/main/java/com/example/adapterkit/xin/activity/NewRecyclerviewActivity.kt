@@ -22,17 +22,19 @@ class NewRecyclerviewActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         val adapter = AdapterKit(this)
+        adapter.clearItems()
 
         recycler_view.layoutManager = GridLayoutManager(this, 2)
         recycler_view.adapter = adapter
 
         //数据
         val list: ArrayList<DataItem<*, out RecyclerView.ViewHolder>> = ArrayList()
-        list.add(TopTabDataItem(NewModel()))//顶部导航
-        list.add(TopBanner(NewModel()))//顶部轮播图
-        list.add(GridDataItem(NewModel()))//金刚区
-        list.add(ActivityDataItem(NewModel()))//活动区域
-        list.add(ItemTabDataItem(NewModel()))//商品tab栏
+        val topTabDataItem = TopTabDataItem(NewModel())
+        list.add(TopTabDataItem(NewModel()))//顶部导航 0
+        list.add(TopBanner(NewModel()))//顶部轮播图 1
+        list.add(GridDataItem(NewModel()))//金刚区 2
+        list.add(ActivityDataItem(NewModel()))//活动区域 3
+        list.add(ItemTabDataItem(NewModel()))//商品tab栏 4
 
         for (i in 0..9) {
             if (i % 2 == 0) {
@@ -47,5 +49,7 @@ class NewRecyclerviewActivity : AppCompatActivity() {
         //为adapter添加数据
         adapter.addItems(list, false)
 
+
+        recycler_view.scrollToPosition(4);
     }
 }

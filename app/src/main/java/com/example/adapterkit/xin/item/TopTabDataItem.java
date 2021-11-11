@@ -20,8 +20,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public class TopTabDataItem extends DataItem<NewModel, RecyclerView.ViewHolder> {
 
-    public TopTabDataItem(@Nullable NewModel model) {
+   private NewModel mNewModel;
+    public TopTabDataItem( @Nullable NewModel model) {
         super(model);
+        mNewModel= model;
     }
 
     @Override
@@ -34,6 +36,9 @@ public class TopTabDataItem extends DataItem<NewModel, RecyclerView.ViewHolder> 
     public void onBindData(@NotNull RecyclerView.ViewHolder holder, int position) {
         ImageView imageView = holder.itemView.findViewById(R.id.item_image);
         imageView.setImageResource(R.drawable.item_top_tab);
+
+        String name = mNewModel.name;
+
     }
 
 

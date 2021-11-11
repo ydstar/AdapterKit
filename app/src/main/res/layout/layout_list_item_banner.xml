@@ -17,5 +17,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        tools:src="@drawable/item_banner"></androidx.appcompat.widget.AppCompatImageView>
+        tools:src="@drawable/item_banner"/>
 </androidx.cardview.widget.CardView>

@@ -44,14 +44,14 @@ abstract class DataItem<DATA, VH : RecyclerView.ViewHolder> {
      *刷新列表
      */
     fun refreshItem() {
-        mAdapter!!.refreshItem(this)
+        mAdapter?.refreshItem(this)
     }
 
     /**
      *从列表上移除
      */
     fun removeItem() {
-        mAdapter!!.removeItem(this)
+        mAdapter?.removeItem(this)
     }
 
     /**
@@ -64,7 +64,6 @@ abstract class DataItem<DATA, VH : RecyclerView.ViewHolder> {
     fun setAdapter(adapter: AdapterKit) {
         this.mAdapter = adapter
     }
-
 
     /**
      * 该item被滑进屏幕
@@ -80,8 +79,10 @@ abstract class DataItem<DATA, VH : RecyclerView.ViewHolder> {
 
     }
 
-
-    open fun onCreateViewHolder(parent: ViewGroup): VH? {
+    /**
+     * 创建viewHolder
+     */
+    open fun onCreateViewHolder(itemView: View): VH? {
         return null
     }
 
